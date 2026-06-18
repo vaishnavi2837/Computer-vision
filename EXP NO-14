@@ -1,0 +1,35 @@
+import cv2
+import numpy as np
+
+# Read the image
+image = cv2.imread("C:/Users/venka/OneDrive/Documents/opencv/sample.png")
+
+if image is None:
+    print("Error: Image not found!")
+else:
+    rows, cols, ch = image.shape
+
+    # Select 4 points from original image
+    pts1 = np.float32([[100, 100],
+                       [400, 100],
+                       [100, 400],
+                       [400, 400]])
+
+    # Select 4 points in destination image
+    pts2 = np.float32([[50, 150],
+                       [450, 50],
+                       [100, 450],
+                       [400, 400]])
+
+    # Create Perspective Transformation Matrix
+    matrix = cv2.getPerspectiveTransform(pts1, pts2)
+
+    # Apply Perspective Transformation
+    transformed = cv2.warpPerspective(image, matrix, (cols, rows))
+
+    # Display images
+    cv2.imshow("Original Image", image)
+    cv2.imshow("Perspective Transformed Image", transformed)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
