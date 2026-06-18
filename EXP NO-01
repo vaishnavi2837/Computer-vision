@@ -1,0 +1,21 @@
+import cv2
+
+# Step 1: Read the image
+image = cv2.imread("sample.png")   # Replace with your image file name
+
+# Check if image is loaded properly
+if image is None:
+    print("Error: Image not found!")
+else:
+    # Step 2: Convert image to Gray-scale
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Step 3: Display the images
+    cv2.imshow("Original Image", image)
+    cv2.imshow("Gray-scale Image", gray_image)
+
+    # Wait until a key is pressed
+    cv2.waitKey(0)
+
+    # Close all windows
+    cv2.destroyAllWindows()
