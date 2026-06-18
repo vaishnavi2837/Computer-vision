@@ -1,0 +1,23 @@
+import cv2
+
+cap = cv2.VideoCapture("colour.mp4")
+
+if not cap.isOpened():
+    print("Error opening video file")
+    exit()
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    # Resize to smaller size
+    small_frame = cv2.resize(frame, (400, 300))  # width, height
+
+    cv2.imshow("Small Video Screen", small_frame)
+
+    if cv2.waitKey(30) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
