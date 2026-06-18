@@ -1,0 +1,24 @@
+import cv2
+
+# Step 1: Read the image
+img = cv2.imread("colour.png")
+
+# Check if image is loaded
+if img is None:
+    print("Error: Image not found")
+else:
+    # Step 2: Convert to Gray (required for Canny)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # Step 3: Apply Canny Edge Detection
+    edges = cv2.Canny(gray, 100, 200)
+
+    # Step 4: Save the output image
+    cv2.imwrite("canny_edges.jpg", edges)
+
+    # Step 5: Display images
+    cv2.imshow("Original Image", img)
+    cv2.imshow("Canny Edge Image", edges)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
