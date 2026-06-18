@@ -1,0 +1,21 @@
+import cv2
+
+# Read the image
+image = cv2.imread("sample.png")
+
+if image is None:
+    print("Error: Image not found!")
+else:
+    # Scale Down (Smaller Image)
+    small_image = cv2.resize(image, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+
+    # Scale Up (Bigger Image)
+    big_image = cv2.resize(image, None, fx=2, fy=2, interpolation=cv2.INTER_LINEAR)
+
+    # Display Images
+    cv2.imshow("Original Image", image)
+    cv2.imshow("Smaller Image", small_image)
+    cv2.imshow("Bigger Image", big_image)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
