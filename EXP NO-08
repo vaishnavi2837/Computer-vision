@@ -1,0 +1,29 @@
+import cv2
+import numpy as np
+
+# Read image
+img = cv2.imread("sample.png")
+
+if img is None:
+    print("Image not found")
+    exit()
+
+# Convert to grayscale
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# Create kernel
+kernel = np.ones((5,5), np.uint8)
+
+# Apply dilation
+dilated = cv2.dilate(gray, kernel, iterations=1)
+
+# Resize to small size (40% of original)
+gray_small = cv2.resize(gray, None, fx=0.4, fy=0.4)
+dilated_small = cv2.resize(dilated, None, fx=0.4, fy=0.4)
+
+# Display images
+cv2.imshow("Original Image - Small", gray_small)
+cv2.imshow("Dilated Image - Small", dilated_small)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
