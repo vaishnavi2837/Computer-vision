@@ -1,0 +1,19 @@
+import cv2
+import numpy as np
+
+# Read image
+img = cv2.imread("colo.png")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# Create kernel
+kernel = np.ones((5,5), np.uint8)
+
+# Apply erosion
+eroded = cv2.erode(gray, kernel, iterations=1)
+
+# Display
+cv2.imshow("Original", gray)
+cv2.imshow("Eroded Image", eroded)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
